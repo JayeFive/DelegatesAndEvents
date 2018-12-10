@@ -20,9 +20,21 @@ namespace DelegatesAndEvents
             //Console.WriteLine(finalHours);
 
             var worker = new Worker();
-
+            worker.WorkPerformed += Worker_WorkPerformed;
+            worker.WorkCompleted += Worker_WorkCopleted;
+            worker.DoWork(8, WorkType.GenerateReports);
 
             Console.ReadKey();
+        }
+
+        private static void Worker_WorkPerformed(object sender, WorkedPerformedEventArgs e)
+        {
+            Console.WriteLine("Hours worked: " + e.Hours + " " + e.WorkType);
+        }
+
+        private static void Worker_WorkCopleted(object sender, EventArgs e)
+        {
+            Console.WriteLine("Worker is done");
         }
 
         //static void DoWork(WorkPerformedHandler del)
